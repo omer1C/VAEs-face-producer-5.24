@@ -41,7 +41,7 @@ def print_plots(num_epochs, train_losses, val_losses):
     axs[1].set_title('Validation Loss')
     axs[1].set(xlabel='Epochs', ylabel='Loss')
     plt.show()
-def vae_loss(x_recon, x, mu, logvar):
+def vae_loss(x_recon, x, mu, logvar, logscale):
     beta = 0.1
     # scale = torch.exp(logscale)
     # dist = torch.distributions.Normal(x_recon, scale)
