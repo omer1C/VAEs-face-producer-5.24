@@ -41,24 +41,15 @@ class Encoder(nn.Module):
         self.fc_logvar = nn.Linear(H4 * W4 * C4, latent)  # Insert the input size
 
     def forward(self, inputs):
-        # print(f'Encoder start max val = {inputs.max()} min val = {inputs.min()}')
-        # print(f'Block 0 mean = {inputs.mean()} variance = {inputs.var()}')
+
         inputs = self.block1(inputs)
-        # print(f'Encoder Block number {1} max val = {inputs.max()} min val = {inputs.min()}')
-        # print(f'Block 1 mean = {inputs.mean()} variance = {inputs.var()}')
         inputs = self.block2(inputs)
-        # print(f'Encoder Block number {2} max val = {inputs.max()} min val = {inputs.min()}')
         inputs = self.block3(inputs)
-        # print(f'Encoder Block number {3} max val = {inputs.max()} min val = {inputs.min()}')
         inputs = self.block4(inputs)
-        # print(f'Encoder Block number {4} max val = {inputs.max()} min val = {inputs.min()}')
-
-
         batch_size = inputs.size(0)
+        
         mu = self.fc_mu(inputs.view(batch_size, -1))
-        # print(f'mu value = {mu}')
         logvar = self.fc_logvar(inputs.view(batch_size, -1))
-        # print(f'logvar value = {logvar}')
 
         return mu, logvar
 
@@ -71,7 +62,6 @@ class Decoder(nn.Module):
         self.num_hiddens = num_hiddens
         self.in_channels = in_channels
         self.H4, self.W4, self.C4 = LinearDimCalc(IMAGE_SIZE, IMAGE_SIZE, self.in_channels, self.num_hiddens)
-        #print('H4 =', self.H4,'W4 = ', self.W4,'C4 = ',self.C4)
         self.fc_dec = nn.Linear(latent, self.H4 * self.W4 * self.C4)  # Insert the output size
 
         self.block1 = nn.Sequential(
@@ -108,20 +98,10 @@ class Decoder(nn.Module):
         inputs = self.fc_dec(inputs)
         inputs = inputs.view(-1, self.C4, self.H4, self.W4)
         inputs = self.block1(inputs)
-        # print(f'Decoder Block number {1} max val = {inputs.max()} min val = {inputs.min()}')
         inputs = self.block2(inputs)
-        # print(f'Decoder Block number {2} max val = {inputs.max()} min val = {inputs.min()}')
         inputs = self.block3(inputs)
-        # print(f'Decoder Block number {3} max val = {inputs.max()} min val = {inputs.min()}')
         inputs = self.block4(inputs)
-        # print(f'Decoder Block number {4} max val = {inputs.max()} min val = {inputs.min()}')
         x_rec = self.block5(inputs)
-        # print(f'Decoder Block number {5} max val = {x_rec.max()} min val = {x_rec.min()}')
-        # images_no_nan = x_rec[~torch.isnan(x_rec)]
-        # mean_value = torch.mean(images_no_nan)
-        # x_rec = torch.nan_to_num(x_rec, nan=0)
-        # print(mean_value.item())
-        # print(x_rec.min(), x_rec.max())
         x_rec = torch.sigmoid(x_rec)
 
         return x_rec
