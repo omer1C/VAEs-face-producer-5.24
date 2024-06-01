@@ -147,7 +147,7 @@ test_data = datasets.CelebA(root=data_path, split='test', download=False, transf
 # define variabels :
 learning_rate = 0.0005
 batch_size = 64
-num_epochs = 3
+num_epochs = 30
 dataset_size = 30000
 latent1 = 256
 
