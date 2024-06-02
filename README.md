@@ -38,6 +38,30 @@ Measures how well the decoder's output matches the original input. Typically, th
 
 Measures how much the learned latent space distribution deviates from the prior distribution (usually a standard normal distribution). This regularizes the latent space to be close to the prior distribution.
 
+## Results: 
+I tried to first train the model with the following parameters : 
+
+IMAGE_SIZE = 64
+learning_rate = 0.0005
+batch_size = 64
+num_epochs = 60
+dataset_size = 30000
+latent1 = 256
+
+With achieved :
+
+Tracking Loss values : 
+![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/efd18c29-7525-49c0-8363-91b04acf0227)
+
+Comparing the original images and the reconstructed images : 
+
+Original Images : 
+![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/521d96c1-f6a9-4b3f-8e62-da4c2a7e88e8)
+
+Reconstructed Images : 
+![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/3f5fdbfb-e3db-4d88-b069-dd83e5d34a6d)
+
+
 
 
 
