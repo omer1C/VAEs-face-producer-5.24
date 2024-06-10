@@ -45,24 +45,21 @@ I tried to first train the model with the following parameters :
 #### IMAGE_SIZE = 64
 #### learning_rate = 5e-3
 #### batch_size = 128
-#### num_epochs = 60
 #### dataset_size = 30000
 #### latent1 = 256
 
 With achieved :
 
 ## Tracking Loss values : 
-![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/efd18c29-7525-49c0-8363-91b04acf0227)
-
+<img width="568" alt="original" src="https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/efd18c29-7525-49c0-8363-91b04acf0227">
 
 Comparing the original images and the reconstructed images : 
 
 ## Original Images : 
-![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/060445e2-28a5-41fe-842c-c35e59cfafcd)
-
+<img width="568" alt="original" src="https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/57fc7b63-36a9-4181-95f9-838d8ca1bc7b">
 
 ## Reconstructed Images : 
-![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/76c3d23a-82c1-4973-af73-5a572d9df4c6)
+<img width="567" alt="reconstruct" src="https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/6ff5435f-b56e-4172-a346-d654a00d26a6">
 
 ## Creating New Faces : 
 As explained in the first part, the original image is encoded into the latent space, where it is represented by a single vector (with smaller dimensions than the dimensions of the original image) and then the decoder decodes the original image based on that vector.
@@ -70,13 +67,16 @@ In order to create a new face, we generate some random vector in the latent spac
 
 ## Results : 
 
-### The firs attempt to create new faces, after one epoch : 
+### The first attempt to create new faces, after one epoch : 
+<img width="568" alt="first epoch" src="https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/bafc44eb-530e-4bb6-9b6f-e19e3e24b04c">
 
-![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/197363c6-8dae-467d-8ecc-2a0b960ea296)
+### Creating New faces after training the model : 
+<img width="568" alt="1randomface" src="https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/a3252d60-944b-4212-ae16-5741abd0fe22">
 
+### The avarage image
+Getting the avarage image by using vector of zeros in the latent space : 
 
-
-
+<img width="568" alt="zeros image" src="https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/b11e2b2c-7f55-417f-8193-c13cbc027136">
 
 
 
