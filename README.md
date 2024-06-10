@@ -41,17 +41,18 @@ Measures how much the learned latent space distribution deviates from the prior 
 ## Results: 
 I tried to first train the model with the following parameters : 
 
-IMAGE_SIZE = 64
-learning_rate = 0.0005
-batch_size = 64
-num_epochs = 60
-dataset_size = 30000
-latent1 = 256
+#### IMAGE_SIZE = 64
+#### learning_rate = 5e-3
+#### batch_size = 64
+#### num_epochs = 60
+#### dataset_size = 30000
+#### latent1 = 256
 
 With achieved :
 
 ## Tracking Loss values : 
 ![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/efd18c29-7525-49c0-8363-91b04acf0227)
+
 
 Comparing the original images and the reconstructed images : 
 
@@ -61,6 +62,10 @@ Comparing the original images and the reconstructed images :
 
 ## Reconstructed Images : 
 ![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/76c3d23a-82c1-4973-af73-5a572d9df4c6)
+
+## Creating New Faces : 
+As explained in the first part, the original image is encoded into the latent space, where it is represented by a single vector (with smaller dimensions than the dimensions of the original image) and then the decoder decodes the original image based on that vector.
+In order to create a new face, we generate some random vector in the latent space and send it to the decoder, thus we will get new fictitious faces.
 
 
 
