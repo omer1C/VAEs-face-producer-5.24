@@ -107,9 +107,9 @@ def train(num_epochs, batch_size, dataset_size, model):
 def plot_compare():
     first_batch = next(iter(train_loader))
     imgs, _ = first_batch
-    imgs = imgs[:32]
+    imgs = imgs[:16]
     recon_batch, mu, logvar = model_1(imgs)
-    recon_batch = recon_batch[:32]
+    recon_batch = recon_batch[:16]
 
     show(imgs)
     show(recon_batch)
@@ -145,17 +145,17 @@ test_data = datasets.CelebA(root=data_path, split='test', download=False, transf
 
 
 # define variabels :
-learning_rate = 0.0005
-batch_size = 64
-num_epochs = 30
+learning_rate = 5e-3
+batch_size = 128
+num_epochs = 60
 dataset_size = 30000
 latent1 = 256
 
 #VAE Class inputs:
 enc_in_chnl = 3
-enc_num_hidden = batch_size
-dec_in_chnl = IMAGE_SIZE
-dec_num_hidden = IMAGE_SIZE
+enc_num_hidden = 32
+dec_in_chnl = 256
+dec_num_hidden = 256
 ###
 train_loader = torch.utils.data.DataLoader(training_data, batch_size=batch_size, shuffle=True)
 test_loader = torch.utils.data.DataLoader(test_data, batch_size=batch_size, shuffle=True)
@@ -174,12 +174,13 @@ else:
     device = torch.device("cpu")
 
 
-optimizer = torch.optim.Adam(model_1.parameters(), lr=learning_rate)
+
 
 # model_1.load_state_dict(torch.load('/Users/omercohen/PycharmProjects/VAEs_face_producer/best_model.pth'))
+optimizer = torch.optim.Adam(model_1.parameters(), lr=learning_rate)
 train_losses, val_losses = train(num_epochs, batch_size, dataset_size, model_1)
 print_plots(num_epochs, train_losses, val_losses)
 
 plot_compare()
-generate_faces(model_1, grid_size=32, latent=latent1)
+generate_faces(model_1, grid_size=16, latent=latent1)
 
