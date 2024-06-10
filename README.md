@@ -43,7 +43,7 @@ I tried to first train the model with the following parameters :
 
 #### IMAGE_SIZE = 64
 #### learning_rate = 5e-3
-#### batch_size = 64
+#### batch_size = 128
 #### num_epochs = 60
 #### dataset_size = 30000
 #### latent1 = 256
