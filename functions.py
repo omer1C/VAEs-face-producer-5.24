@@ -90,7 +90,7 @@ class Decoder(nn.Module):
 
         self.block5 = nn.Sequential(
             nn.Conv2d(num_hiddens // 8, out_channels=3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
-            nn.LeakyReLU()
+            nn.Sigmoid()
         )
 
     def forward(self, inputs):
@@ -102,7 +102,6 @@ class Decoder(nn.Module):
         inputs = self.block3(inputs)
         inputs = self.block4(inputs)
         x_rec = self.block5(inputs)
-        x_rec = torch.sigmoid(x_rec)
 
         return x_rec
 
