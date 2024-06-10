@@ -16,6 +16,7 @@ import zipfile
 import wget
 import functions
 from pathlib import Path
+import time 
 
 def show(imgs):
     # Create a grid of 8x4 images
@@ -51,7 +52,7 @@ def vae_loss(x_recon, x, mu, logvar, logscale):
     BCE_loss = nnF.binary_cross_entropy(x_recon, x, reduction='sum')
     KLD = - 0.5 * torch.sum(1+ logvar - mu.pow(2) - logvar.exp())
     return KLD * beta + BCE_loss
-def train(num_epochs, batch_size, dataset_size, model):
+def train(num_epochs, batch_size, dataset_size, model, latent):
     print('Start training!!!')
     train_losses = []
     val_losses = []
@@ -59,6 +60,7 @@ def train(num_epochs, batch_size, dataset_size, model):
     model.train()
     for epoch in range(num_epochs):
         running_loss = 0.0
+        start = time.time()
         for batch_idx, batch in enumerate(train_loader):
             imgs, _ = batch
             if torch.cuda.is_available():
@@ -96,19 +98,20 @@ def train(num_epochs, batch_size, dataset_size, model):
                    break
         val_loss /= len(test_loader.dataset)
         val_losses.append(val_loss)
-
+        end = time.time()
         print(f'Epoch {epoch + 1}/{num_epochs}, Train Loss: {train_losses[-1]}, Test Loss: {val_losses[-1]}')
+        print(f'Epoch take {end-start} [sec]')
         if val_loss <= min_loss:
             min_loss = val_loss
             print(f'New best epoch, number{epoch+1}, with Test Loss: {val_losses[-1]}, best model updated!')
-            torch.save(model.state_dict(), "/Users/omercohen/PycharmProjects/VAEs_face_producer/" + "best_model.pth")
+            torch.save(model.state_dict(), "/Users/omercohen/PycharmProjects/VAEs_face_producer/" + 'latent=_{}_best_model.pth'.format(latent))
 
     return train_losses, val_losses
-def plot_compare():
+def plot_compare(model):
     first_batch = next(iter(train_loader))
     imgs, _ = first_batch
     imgs = imgs[:16]
-    recon_batch, mu, logvar = model_1(imgs)
+    recon_batch, mu, logvar = model(imgs)
     recon_batch = recon_batch[:16]
 
     show(imgs)
@@ -178,9 +181,9 @@ else:
 
 # model_1.load_state_dict(torch.load('/Users/omercohen/PycharmProjects/VAEs_face_producer/best_model.pth'))
 optimizer = torch.optim.Adam(model_1.parameters(), lr=learning_rate)
-train_losses, val_losses = train(num_epochs, batch_size, dataset_size, model_1)
+train_losses, val_losses = train(num_epochs, batch_size, dataset_size, model_1, latent1)
 print_plots(num_epochs, train_losses, val_losses)
 
-plot_compare()
+plot_compare(model_1)
 generate_faces(model_1, grid_size=16, latent=latent1)
 
