@@ -62,13 +62,7 @@ Comparing the original images and the reconstructed images :
 ![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/3f5fdbfb-e3db-4d88-b069-dd83e5d34a6d)
 
 
-## Note: 
-trying to change the Reconstruction Loss fron Binary Cross Enthropy to MSE will give : 
 
-![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/7bc6816e-c337-481d-9720-afdb8eba7327)
-
-With emphsaize the importance of the reconstrution loss, in here we can see that we achieved the average image, and not the 
-unique image to each one separately.    
 
 
 
