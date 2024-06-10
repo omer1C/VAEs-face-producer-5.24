@@ -28,6 +28,7 @@ If we manage to train the decoder to decode the vector from the latent space to 
 ## Loss Function
 
 Given a dataset X, the goal is to model the underlying data distribution P(X) and maximize the marginal likelihood of the data, log(P(X)), meaning:
+
 ![Loss Function](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/4a34b238-9592-491c-b1c9-c6092570a98d)
 
 ### Reconstruction Loss
@@ -66,6 +67,12 @@ Comparing the original images and the reconstructed images :
 ## Creating New Faces : 
 As explained in the first part, the original image is encoded into the latent space, where it is represented by a single vector (with smaller dimensions than the dimensions of the original image) and then the decoder decodes the original image based on that vector.
 In order to create a new face, we generate some random vector in the latent space and send it to the decoder, thus we will get new fictitious faces.
+
+## Results : 
+
+### The firs attempt to create new faces, after one epoch : 
+
+![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/197363c6-8dae-467d-8ecc-2a0b960ea296)
 
 
 
