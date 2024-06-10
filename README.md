@@ -56,10 +56,11 @@ With achieved :
 Comparing the original images and the reconstructed images : 
 
 ## Original Images : 
-![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/521d96c1-f6a9-4b3f-8e62-da4c2a7e88e8)
+![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/060445e2-28a5-41fe-842c-c35e59cfafcd)
+
 
 ## Reconstructed Images : 
-![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/3f5fdbfb-e3db-4d88-b069-dd83e5d34a6d)
+![image](https://github.com/omer1C/VAEs-face-producer-5.24/assets/135855862/76c3d23a-82c1-4973-af73-5a572d9df4c6)
 
 
 
